@@ -54,8 +54,12 @@
 
 </form>
 
-@* Aqui deberia un boton *@
-
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Crear Tarea" class="btn btn-primary" />
+        <a href="@Url.Action("Inicio", "Creacion")" class="btn btn-primary">Cancelar</a>
+    </div>
+</div>
 
 @if (TempData["ErrorMessageCreacion"] != null)
 {
