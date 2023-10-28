@@ -1,0 +1,63 @@
+﻿@model AppGestionProyectos.Models.CreacionTarea
+
+@{
+    ViewBag.Title = "CrearTarea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Crear Tarea</h2>
+
+<form method="post" class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NombreTarea, htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NombreTarea, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaVencimiento, htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FechaVencimiento, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Creador, htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Creador, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comentario, htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Comentario, new { @class = "form-control" })
+        </div>
+    </div>
+
+</form>
+
+@* Aqui deberia un boton *@
+
+
+@if (TempData["ErrorMessageCreacion"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessageCreacion"]</div>
+}

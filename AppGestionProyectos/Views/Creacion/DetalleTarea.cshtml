@@ -1,0 +1,33 @@
+﻿@model AppGestionProyectos.Models.DetalleTarea
+
+@{
+    ViewBag.Title = "DetalleTarea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Detalle de Tarea</h2>
+
+<div>
+    <h4>Editar Detalle de Tarea</h4>
+    <hr />
+    @using (Html.BeginForm("DetalleTarea", "Creacion", FormMethod.Post))
+    {
+        <div>
+            @Html.LabelFor(model => model.TareaID)
+            @Html.TextBoxFor(model => model.TareaID)
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Realizada)
+            @Html.CheckBoxFor(model => model.Realizada)
+        </div>
+
+
+        <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+    }
+</div>
+
+@* Aqui deberia ir un boton *@

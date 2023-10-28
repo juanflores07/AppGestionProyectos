@@ -1,0 +1,62 @@
+﻿@model AppGestionProyectos.Models.EditarTarea
+
+@{
+    ViewBag.Title = "EditarTarea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Editar Tarea</h2>
+
+<br />
+
+@using (Html.BeginForm("EditarTarea", "Creacion", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.id, "ID de la tarea")
+        @Html.TextBoxFor(model => model.id)
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.nuevaDescripcion, "Nueva Descripcion")
+        @Html.TextBoxFor(model => model.nuevaDescripcion)
+    </div>
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.nuevaFechaInicio, "Nueva Fecha Inicio")
+        @Html.TextBoxFor(model => model.nuevaFechaInicio, new { type = "date" })
+    </div>
+
+    <br />
+    <div>
+        @Html.LabelFor(model => model.nuevaFechaVencimiento, "Nueva Fecha Vencimiento")
+        @Html.TextBoxFor(model => model.nuevaFechaVencimiento, new { type = "date" })
+    </div>
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.nuevoCreador, "Nuevo Supervisor (Numero del 1 al 4 segun usuario)")
+        @Html.TextBoxFor(model => model.nuevoCreador)
+    </div>
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.nuevoComentario, "Nuevo Comentario")
+        @Html.TextBoxFor(model => model.nuevoComentario)
+    </div>
+    <br />
+
+    <br />
+}
+
+<input type="submit" value="Guardar cambios" class="btn btn-primary" />
+<a href="@Url.Action("ListaTareas", "Creacion")" class="btn btn-primary">Cancelar</a>
+
+@if (!string.IsNullOrEmpty(TempData["MensajeEdicion"] as string))
+{
+    <div class="alert alert-danger">@TempData["MensajeEdicion"]</div>
+}
+

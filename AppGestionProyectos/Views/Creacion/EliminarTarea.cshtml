@@ -1,0 +1,27 @@
+﻿@model AppGestionProyectos.Models.EliminarTarea
+
+@{
+    ViewBag.Title = "EliminarTarea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Tarea</h2>
+
+
+
+@using (Html.BeginForm("EliminarTarea", "Creacion", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.ID, "ID de la Tarea a eliminar:")
+        @Html.TextBoxFor(model => model.ID)
+    </div>
+}
+
+@* Aqui deberia un boton *@
+
+@if (TempData["MensajeEliminacion"] != null)
+{
+    <div class="message">
+        @TempData["MensajeEliminacion"]
+    </div>
+}

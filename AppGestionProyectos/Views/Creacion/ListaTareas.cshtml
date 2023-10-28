@@ -1,0 +1,83 @@
+﻿@model IEnumerable<AppGestionProyectos.Models.ListaTarea>
+
+@{
+    ViewBag.Title = "ListaTareas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string asignado = ""; // Variable para almacenar el valor de item.Asignado
+
+    // Obtener el valor de item.Asignado antes del foreach
+    if (Model.Any())
+    {
+        asignado = Model.First().Asignado;
+    }
+}
+
+<h2>Lista Tareas</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID de Tarea</th>
+                <th>Nombre Tarea</th>
+                <th>Descripción</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Vencimiento</th>
+                <th>Supervisor</th>
+                <th>Asignado a</th>
+                <th>Comentarios</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NombreTarea)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FechaInicio)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FechaVencimiento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NombreCreador)</td>
+                    <td>
+                        <span>@(!string.IsNullOrEmpty(item.Asignado) ? item.Asignado : "")</span>
+                        @if (!string.IsNullOrEmpty(TempData["NombreUsuarioAsignado"]?.ToString()) && item.ID == ViewBag.IDTareaAsignada)
+                        {
+                            <span>@TempData["NombreUsuarioAsignado"]</span>
+                        }
+                        else
+                        {
+                            <span>@(string.IsNullOrEmpty(item.Asignado) ? item.Asignado : "")</span>
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Comentarios)</td>
+                    <td>
+                        @Html.ActionLink("Asignar tarea", "AsignarTarea", "Creacion", new { id = item.ID }, new { @class = "btn btn-primary btn-spacing" })
+                        <br />
+                        @Html.ActionLink("Editar tarea", "EditarTarea", "Creacion", new { idtarea = item.ID }, new { @class = "btn btn-primary btn-spacing" })
+                        <br />
+                        @Html.ActionLink("Eliminar tarea", "EliminarTarea", "Creacion", new { id = item.ID }, new { @class = "btn btn-primary btn-spacing" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a href="@Url.Action("Inicio", "Creacion")" class="btn btn-primary">Regresar</a>
+
+@if (TempData["NombreTareaAsignada"] != null)
+{
+    <div class="alert alert-success">La tarea "@TempData["NombreTareaAsignada"]" ha sido asignada al usuario "@TempData["NombreUsuarioAsignado"]".</div>
+}
+
+@if (!string.IsNullOrEmpty(TempData["MensajeEdicionExitosa"] as string))
+{
+    <div class="alert alert-success">@TempData["MensajeEdicionExitosa"]</div>
+}
+@if (TempData["MensajeEliminacion"] != null)
+{
+    <div class="alert alert-success">La tarea ha sido eliminada exitosamente.</div>
+}
+

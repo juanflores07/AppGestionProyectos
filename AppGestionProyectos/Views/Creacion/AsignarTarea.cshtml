@@ -1,0 +1,33 @@
+﻿@model AppGestionProyectos.Models.AsignarTarea
+
+@{
+
+    ViewBag.Title = "AsignarTarea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Asignar Tarea</h2>
+
+@using (Html.BeginForm("AsignarTarea", "Creacion", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.IDTarea)
+        @Html.TextBoxFor(model => model.IDTarea)
+        @Html.ValidationMessageFor(model => model.IDTarea)
+    </div>
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.IDUsuario)
+        @Html.TextBoxFor(model => model.IDUsuario)
+        @Html.ValidationMessageFor(model => model.IDUsuario)
+    </div>
+    <br />
+}
+
+@* Aqui deberia un boton *@
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">@TempData["Mensaje"]</div>
+}

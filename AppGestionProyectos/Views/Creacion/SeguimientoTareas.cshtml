@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AppGestionProyectos.Models.SeguimientoTarea>
+
+@{
+    ViewBag.Title = "SeguimientoTareas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Seguimiento Tareas</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tarea ID</th>
+                <th>Descripción</th>
+                <th>Realizada</th>
+                <th>Tiempo Invertido (en días)</th>
+                <th>Fecha de Registro</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var seguimiento1 in Model)
+            {
+                <tr>
+                    <td>@seguimiento1.TareaID</td>
+                    <td>@seguimiento1.Descripcion</td>
+                    <td>@(seguimiento1.Realizada ? "Sí" : "No")</td>
+                    <td>@seguimiento1.TiempoInvertido</td>
+                    <td>@seguimiento1.FechaInicio.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@Html.ActionLink("Modificar detalles de la tarea", "DetalleTarea", "Creacion", new { @class = "btn btn-primary btn-spacing" })
+<a href="@Url.Action("Inicio", "Creacion")" class="btn btn-primary">Regresar</a>
+
+
+

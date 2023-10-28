@@ -1,0 +1,34 @@
+﻿@model AppGestionProyectos.Models.Login
+
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Iniciar sesión</h2>
+
+@using (Html.BeginForm("Login", "Creacion", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Correo, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Correo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contra, new { @class = "control-label" })
+        @Html.PasswordFor(model => model.Contra, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Contra, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+}
+
