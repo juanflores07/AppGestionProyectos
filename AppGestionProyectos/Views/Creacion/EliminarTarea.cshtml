@@ -17,7 +17,8 @@
     </div>
 }
 
-@* Aqui deberia un boton *@
+<input type="submit" value="Eliminar" class="btn btn-primary" />
+<a href="@Url.Action("ListaTareas", "Creacion")" class="btn btn-primary">Cancelar</a>
 
 @if (TempData["MensajeEliminacion"] != null)
 {
